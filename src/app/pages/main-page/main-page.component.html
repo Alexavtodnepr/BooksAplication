@@ -1,0 +1,48 @@
+<ng-container *ngIf="booksArray;else loader">
+  <app-header (searchValue)="searchValueChanged($event)" (methodBySort)="SortMethod($event)"
+              (choosedPeriod)="ChosedPeriod($event)"></app-header>
+  <div class="overflow-x-auto w-full lg:w-295 mx-auto">
+
+  <table class="table-auto w-full border-collapse border border-gray-400">
+    <thead>
+    <tr class="bg-gray-200">
+      <th class="p-3 border border-gray-400 w-8">Title</th>
+      <th class="p-3 border border-gray-400 w-full lg:w-50">Description</th>
+      <th class="p-3 border border-gray-400 sm:w-1/6 md:w-1/7 lg:w-1/8">Page Count</th>
+      <th class="p-3 border border-gray-400 sm:w-2/6 md:w-2/7 lg:w-2/8">Excerpt</th>
+      <th class="p-3 border border-gray-400 sm:w-1/6 md:w-1/7 lg:w-1/8">Publish Date</th>
+      <th class="p-3 border border-gray-400 sm:w-1/6 md:w-1/7 lg:w-1/8">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr class="hover:bg-gray-100" *ngFor="let book of booksArray | bookSearch: titleFilter | bookSort: sortBy | bookDatePeriod: choosedDate">
+        <td class="p-3 border border-gray-400 w-8">{{book.title}}</td>
+        <td class="p-3 cursor-pointer border border-gray-400 w-full lg:w-50"
+          (click)="openDialog(book, 'Description', book.description)">
+          {{ book.description | truncate}}
+          <mat-icon>remove_red_eye</mat-icon>
+        </td>
+        <td class="p-3 border border-gray-400 sm:w-1/6 md:w-1/7 w-5">{{book.pageCount}}</td>
+        <td class="p-3 cursor-pointer border border-gray-400 sm:w-2/6 md:w-2/7 lg:w-2/8"
+          (click)="openDialog(book, 'Excerpt', book.excerpt)">
+          {{ book.excerpt | truncate}}
+          <mat-icon>remove_red_eye</mat-icon>
+        </td>
+        <td class="p-3 border border-gray-400 sm:w-1/6 md:w-1/7 lg:w-1/8">{{book.publishDate | date}}</td>
+        <td class="p-3 border border-gray-400 sm:w-1/6 md:w-1/7 lg:w-1/8"></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</ng-container>
+<ng-template #loader>
+  <div class="relative h-screen">
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <mat-progress-spinner color="warn" mode="indeterminate"></mat-progress-spinner>
+    </div>
+  </div>
+</ng-template>
+
+<ng-container *ngIf="booksArray === []">
+  nothing found :(
+</ng-container>

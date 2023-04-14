@@ -1,0 +1,43 @@
+<div class="py-10 bg-gray-500">
+  <div class="w-full lg:w-295 mx-auto flex flex-row justify-between">
+    <div>
+      <mat-form-field>
+        <mat-label>Name of the book</mat-label>
+        <input matInput placeholder="Search" value="" (input)="SearchValueInput($event)">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Сhoose a sorting method</mat-label>
+        <mat-select [(value)]="chosedSortMethod" (selectionChange)="MethodOfSort(chosedSortMethod)">
+          <mat-option>None</mat-option>
+          <mat-option value="name">Sort by book name</mat-option>
+          <mat-option value="date">Sort by publication date</mat-option>
+          <mat-option value="pageCount">Sort by number of pages</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="flex flex-row w-full">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [formGroup]="filterForm" [rangePicker]="picker">
+          <input matStartDate formControlName="startDate" placeholder="Start date">
+          <input matEndDate formControlName="endDate" placeholder="End date">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+        <button mat-button [disabled]="filterForm.invalid" (click)="AplyPeriod()">Aply Date Period</button>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Сhoose a period</mat-label>
+        <mat-select [(value)]="chosedType" (selectionChange)="chosedPeriod(chosedType)">
+          <mat-option>None</mat-option>
+          <mat-option value="year">This year</mat-option>
+          <mat-option value="month">This month</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
