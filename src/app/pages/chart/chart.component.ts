@@ -4,22 +4,12 @@ import { BooksApiService } from 'src/app/shared/services/books-api.service';
 
 @Component({
   selector: 'app-chart',
-  template: '<canvas #myChart></canvas>'
+  templateUrl: './chart.component.html',
 })
 export class ChartComponent implements OnInit {
   public chartType: string = 'bar';
   public chartData: any[] = [];
   public chartLabels: number[] = [];
-  public chartOptions: any = {
-    responsive: true,
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
-  };
 
   constructor(private bookApiService: BooksApiService) { }
 
@@ -41,5 +31,4 @@ export class ChartComponent implements OnInit {
       this.chartLabels = years;
     });
   }
-
 }
