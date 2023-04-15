@@ -1,5 +1,4 @@
-import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
-import { Chart } from 'chart.js';
+import { Component, OnInit } from '@angular/core';
 import { BooksApiService } from 'src/app/shared/services/books-api.service';
 
 @Component({
