@@ -1,6 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as moment from 'moment';
+import { AddEditModalComponent } from 'src/app/shared/components/add-edit-modal/add-edit-modal.component';
+import { MatDialog } from '@angular/material/dialog';
+import { BackUpDataService } from 'src/app/shared/services/back-up-data.service';
 
 @Component({
   selector: 'app-header',
@@ -11,14 +14,15 @@ import * as moment from 'moment';
 export class HeaderComponent implements OnInit {
   @Output() searchValue = new EventEmitter();
   @Output() methodBySort = new EventEmitter();
-  @Output() choosedPeriod = new EventEmitter()
+  @Output() choosedPeriod = new EventEmitter();
+  @Output() newBooks = new EventEmitter();
   chosedSortMethod: string = '';
   filterForm!: FormGroup;
   startDate!: Date;
   endDate!: Date;
   period!: string;
   chosedType!: string;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.filterForm = this.fb.group({
@@ -65,4 +69,11 @@ export class HeaderComponent implements OnInit {
       this.choosedPeriod.emit({start: this.startDate, end: this.endDate })
     }
   }
+
+  public AddNew() {
+    this.dialog.open(AddEditModalComponent, {data:{book: {}}}).afterClosed().subscribe(result=>{
+      this.newBooks.emit(result);
+    })
+  }
+
 }

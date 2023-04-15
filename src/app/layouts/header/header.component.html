@@ -1,5 +1,5 @@
 <div class="py-10 bg-gray-500">
-  <div class="w-full lg:w-295 mx-auto flex flex-row justify-between">
+  <div class="w-full xl:w-295 mx-auto flex flex-row flex-wrap md:flex-nowrap justify-between">
     <div>
       <mat-form-field>
         <mat-label>Name of the book</mat-label>
@@ -17,7 +17,7 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div class="flex flex-row w-full">
+    <div class="flex flex-row flex-wrap">
       <mat-form-field appearance="fill">
         <mat-label>Enter a date range</mat-label>
         <mat-date-range-input [formGroup]="filterForm" [rangePicker]="picker">
@@ -27,7 +27,7 @@
         <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
-        <button mat-button [disabled]="filterForm.invalid" (click)="AplyPeriod()">Aply Date Period</button>
+        <button mat-button (click)="AplyPeriod()">Aply Date Period</button>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Сhoose a period</mat-label>
@@ -37,6 +37,10 @@
           <mat-option value="month">This month</mat-option>
         </mat-select>
       </mat-form-field>
+    </div>
+    <div class="flex flex-col">
+      <button mat-button color="accent" (click)="AddNew()">Add book<mat-icon>add_box</mat-icon></button>
+      <button mat-button color="accent" routerLink="chart">Chart<mat-icon>bar_chart</mat-icon></button>
     </div>
   </div>
 </div>

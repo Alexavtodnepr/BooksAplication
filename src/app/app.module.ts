@@ -11,15 +11,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { TruncatePipe } from './shared/pipes/truncate.pipe';
 import { DialogComponent } from './shared/components/dialog/dialog.component';
 import { BookSearchPipe } from './shared/pipes/book-search.pipe';
-import { MatSelectModule } from '@angular/material/select';
 import { BookSortPipe } from './shared/pipes/book-sort.pipe';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule, DateAdapter, MatDateFormats, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BookDatePeriodPipe } from './shared/pipes/book-date-period.pipe';
-
-let UKRAINIAN_DATE_FORMATS;
-export const MAT_DATE_FORMATS = new InjectionToken<MatDateFormats>('my-date-formats');
+import { AddEditModalComponent } from './shared/components/add-edit-modal/add-edit-modal.component';
+import { ChartComponent } from './pages/chart/chart.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -30,7 +27,9 @@ export const MAT_DATE_FORMATS = new InjectionToken<MatDateFormats>('my-date-form
     DialogComponent,
     BookSearchPipe,
     BookSortPipe,
-    BookDatePeriodPipe
+    BookDatePeriodPipe,
+    AddEditModalComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
@@ -38,11 +37,8 @@ export const MAT_DATE_FORMATS = new InjectionToken<MatDateFormats>('my-date-form
     MaterialModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatSelectModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
     ReactiveFormsModule,
-
+    NgChartsModule
   ],
   providers: [
   ],

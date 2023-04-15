@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>{{ data.book.title }}</h2>
+<mat-dialog-content class="h-full p-10">
+  <form [formGroup]="bookForm" class="flex flex-col h-full w-100 md:w-210">
+    <mat-form-field class="w-100 md:w-210">
+      <input matInput formControlName="title" placeholder="Title">
+    </mat-form-field>
+    <mat-form-field class="h-full">
+      <textarea class="h-20" matInput formControlName="description" placeholder="Description"></textarea>
+    </mat-form-field>
+    <mat-form-field class="h-full">
+      <textarea class="h-20" matInput formControlName="excerpt" placeholder="Excerpt"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" formControlName="publishDate" placeholder="Publish Date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="number" formControlName="pageCount" placeholder="Page Count">
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="bookForm.invalid"
+          (click)="onSaveClick(bookForm.value)">Save</button>
+</div>
