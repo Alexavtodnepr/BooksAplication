@@ -5,6 +5,7 @@ import { AddEditModalComponent } from 'src/app/shared/components/add-edit-modal/
 import { MatDialog } from '@angular/material/dialog';
 import { BackUpDataService } from 'src/app/shared/services/back-up-data.service';
 import { ExportService } from 'src/app/shared/services/excel-export-service.service';
+import { ExportToPdfService } from 'src/app/shared/services/pdf-export.service';
 
 @Component({
   selector: 'app-header',
@@ -23,7 +24,7 @@ export class HeaderComponent implements OnInit {
   endDate!: Date;
   period!: string;
   chosedType!: string;
-  constructor(private fb: FormBuilder, public dialog: MatDialog, private exportToExcell:ExportService) { }
+  constructor(private fb: FormBuilder, public dialog: MatDialog, private exportToExcell:ExportService, private exportPdf: ExportToPdfService) { }
 
   ngOnInit(): void {
     this.filterForm = this.fb.group({
@@ -80,5 +81,10 @@ export class HeaderComponent implements OnInit {
   public ExportToExcell() {
     const BookArray = JSON.parse(localStorage.getItem('filteredArray')!);
     this.exportToExcell.exportToExcel(BookArray, 'books');
+  }
+
+  public ExportToPDF() {
+    const BookArray = JSON.parse(localStorage.getItem('filteredArray')!);
+    this.exportPdf.exportToPdf(BookArray);
   }
 }
