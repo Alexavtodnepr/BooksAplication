@@ -26,7 +26,7 @@ export class ChartComponent implements OnInit {
           data.push(1);
         }
       }
-      this.chartData = [{ data: data, label: 'Number of books' }];
+      this.chartData = [{ data: data, label: 'Number of books', backgroundColor: ['blue', 'green'] }];
       this.chartLabels = years;
     });
   }
