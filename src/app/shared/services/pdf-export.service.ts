@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as jsPDF from 'jspdf';
+import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import html2canvas from 'html2canvas';
 import { BookInterface } from 'src/app/models/book.interface';
@@ -12,7 +12,7 @@ export class ExportToPdfService {
   constructor() { }
 
   exportToPdf(books: BookInterface[]) {
-    const doc = new jsPDF.default();
+    const doc = new jsPDF();
 
     const tableData = books.map(book => [book.id, book.title, book.pageCount, book.publishDate]);
 
@@ -21,7 +21,7 @@ export class ExportToPdfService {
     const margin = { top: 60, right: 30, bottom: 40, left: 30 };
     const pageWidth = doc.internal.pageSize.width - margin.left - margin.right;
     const pageHeight = doc.internal.pageSize.height - margin.top - margin.bottom;
-// не знайшов іншого способу обійти цю помилку, бо мало часу(
+// не знайшов способа обійти цю помилку
     // @ts-ignore
     doc.autoTable({
       head: headers,
