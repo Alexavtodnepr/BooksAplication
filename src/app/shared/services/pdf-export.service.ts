@@ -21,7 +21,7 @@ export class ExportToPdfService {
     const margin = { top: 60, right: 30, bottom: 40, left: 30 };
     const pageWidth = doc.internal.pageSize.width - margin.left - margin.right;
     const pageHeight = doc.internal.pageSize.height - margin.top - margin.bottom;
-// не знайшов способа обійти цю помилку
+// не знайшов способа обійти цю помилку бо мало часу((
     // @ts-ignore
     doc.autoTable({
       head: headers,
