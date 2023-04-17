@@ -10,11 +10,13 @@ export class BookDatePeriodPipe implements PipeTransform {
     if (!books || !period) {
       return books;
     }
-
-    return books.filter(book => {
+    const FilteredArray =
+    books.filter(book => {
       const publicationDate = new Date(book.publishDate);
 
       return publicationDate >= period.start && publicationDate <= period.end;
     });
+    localStorage.setItem('filteredArray', JSON.stringify(FilteredArray));
+    return FilteredArray;
   }
 }

@@ -10,10 +10,12 @@ export class BookSearchPipe implements PipeTransform {
     if (!title) {
       return books;
     }
-
-    return books.filter((book) => {
+    const FilteredArray =
+    books.filter((book) => {
       return book.title.toLowerCase().includes(title.toLowerCase());
     });
+    localStorage.setItem('filteredArray', JSON.stringify(FilteredArray));
+    return FilteredArray
   }
 
 }

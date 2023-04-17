@@ -25,7 +25,6 @@ export class BookSortPipe implements PipeTransform {
     if (sortBy === 'pageCount') {
       return books.sort((a, b) => a.pageCount - b.pageCount);
     }
-
     return books;
   }
 }

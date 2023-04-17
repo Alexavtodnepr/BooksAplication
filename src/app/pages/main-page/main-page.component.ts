@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { BooksApiService } from 'src/app/shared/services/books-api.service';
 import { BookInterface } from 'src/app/models/book.interface';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,7 +13,7 @@ import { BackUpDataService } from 'src/app/shared/services/back-up-data.service'
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss']
 })
-export class MainPageComponent implements OnInit, OnDestroy {
+export class MainPageComponent implements OnInit, OnChanges, OnDestroy {
   booksArray?: BookInterface[];
   titleFilter!: string;
   sortBy!: string;
@@ -119,4 +119,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.subscr.unsubscribe();
   }
 
+  public ngOnChanges(changes: SimpleChanges) {
+    console.log(this.booksArray);
+  }
 }
